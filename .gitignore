@@ -5,3 +5,7 @@
 /WorkerService/WorkerService/bin/Debug/netcoreapp3.1
 /WorkerService/WorkerService/obj
 /WorkerService/.vs/WorkerService/v16
+/WorkerService/Core/obj
+/WorkerService/Core/bin/Debug/netcoreapp3.1
+/WorkerService/Infrastructure/bin/Debug/netcoreapp3.1
+/WorkerService/Infrastructure/obj
