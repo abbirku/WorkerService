@@ -3,3 +3,5 @@
 ################################################################################
 
 /WorkerService/WorkerService/bin/Debug/netcoreapp3.1
+/WorkerService/WorkerService/obj
+/WorkerService/.vs/WorkerService/v16
