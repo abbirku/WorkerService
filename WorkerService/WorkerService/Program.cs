@@ -1,9 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Infrastructure;
+using Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,8 +47,6 @@ namespace WorkerService
             {
                 Log.CloseAndFlush();
             }
-
-            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -56,13 +54,18 @@ namespace WorkerService
                 .UseWindowsService()
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .UseSerilog()
-                .ConfigureContainer<ContainerBuilder>(builder => {
+                .ConfigureContainer<ContainerBuilder>(builder =>
+                {
                     builder.RegisterModule(new WorkerModule(_connectionString,
                         _migrationAssemblyName, _configuration));
+                    builder.RegisterModule(new InfrastructureModule(_connectionString,
+                        _migrationAssemblyName));
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<Worker>();
+                    services.AddDbContext<WorkerContext>(options =>
+                        options.UseSqlServer(_connectionString, b => b.MigrationsAssembly(_migrationAssemblyName)));
                 });
     }
 }

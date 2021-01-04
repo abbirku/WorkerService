@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Infrastructure.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -23,7 +24,9 @@ namespace WorkerService
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation(_loggingService.LogMessage());
+                var message = $"Worker running at: {DateTimeOffset.Now}";
+                _loggingService.AddLoggingMessage(message);
+                _logger.LogInformation(message);
                 await Task.Delay(1000, stoppingToken);
             }
         }

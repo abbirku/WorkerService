@@ -1,6 +1,4 @@
 ﻿using Autofac;
-using Core;
-using Infrastructure.BusinessObject;
 using Infrastructure.Context;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
@@ -21,36 +19,22 @@ namespace Infrastructure
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CourseContext>()
+            builder.RegisterType<WorkerContext>()
                    .WithParameter("connectionString", _connectionString)
                    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
-                   .InstancePerLifetimeScope();
-
-            //builder.RegisterGeneric(typeof(Repository<,,>)).As(typeof(IRepository<,,>))
-            //    .InstancePerLifetimeScope();
+                   .SingleInstance();
 
             //Registering repositories
-            builder.RegisterType<StudentRepository>().As<IStudentRepository>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<CourseRepository>().As<ICourseRepository>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<StudentRegistrationRepository>().As<IStudentRegistrationRepository>()
-                .InstancePerLifetimeScope();
+            builder.RegisterType<LoggingRepository>().As<ILoggingRepository>()
+                .SingleInstance();
 
             //Registering UnitOfWorks
-            builder.RegisterType<CourseUnitOfWork>().As<ICourseUnitOfWork>()
-                .InstancePerLifetimeScope();
+            builder.RegisterType<WorkerUnitOfWork>().As<IWorkerUnitOfWork>()
+                .SingleInstance();
 
             //Registering services
-            builder.RegisterType<CourseRegistrationService>().As<ICourseRegistrationService>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<StudentService>().As<IStudentService>()
-                .InstancePerLifetimeScope();
-            builder.RegisterType<CourseService>().As<ICourseService>()
-                .InstancePerLifetimeScope();
-
-            //Registering type
-            builder.RegisterType<RegistrationInfo>().AsSelf();
+            builder.RegisterType<LoggingService>().As<ILoggingService>()
+                .SingleInstance();
 
             base.Load(builder);
         }

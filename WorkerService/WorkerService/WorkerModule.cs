@@ -1,8 +1,5 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WorkerService
 {
@@ -24,9 +21,6 @@ namespace WorkerService
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<LoggingService>().As<ILoggingService>()
-                .SingleInstance();
-
             base.Load(builder);
         }
     }
