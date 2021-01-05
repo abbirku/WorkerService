@@ -27,6 +27,7 @@ namespace Infrastructure.Services
                     LogMessage = message,
                     LogTime = DateTime.Now
                 });
+                _workerUnitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {

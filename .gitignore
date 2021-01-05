@@ -9,3 +9,4 @@
 /WorkerService/Core/bin/Debug/netcoreapp3.1
 /WorkerService/Infrastructure/bin/Debug/netcoreapp3.1
 /WorkerService/Infrastructure/obj
+/WorkerService/.vs/WorkerService/DesignTimeBuild

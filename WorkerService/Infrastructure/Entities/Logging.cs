@@ -10,5 +10,6 @@ namespace Infrastructure.Entities
         public int Id { get; set; }
         public string LogMessage { get; set; }
         public DateTime LogTime { get; set; }
+        public bool IsActive { get; set; }
     }
 }

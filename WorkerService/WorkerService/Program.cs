@@ -65,7 +65,7 @@ namespace WorkerService
                 {
                     services.AddHostedService<Worker>();
                     services.AddDbContext<WorkerContext>(options =>
-                        options.UseSqlServer(_connectionString, b => b.MigrationsAssembly(_migrationAssemblyName)));
+                        options.UseSqlServer(!string.IsNullOrEmpty(_connectionString) ? _connectionString : "Data Source=DODPC\\DOD20;Initial Catalog=LoggingDb;Integrated Security=True;", b => b.MigrationsAssembly(_migrationAssemblyName)));
                 });
     }
 }

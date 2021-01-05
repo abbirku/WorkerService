@@ -22,7 +22,7 @@ namespace Infrastructure
             builder.RegisterType<WorkerContext>()
                    .WithParameter("connectionString", _connectionString)
                    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
-                   .SingleInstance();
+                   .InstancePerLifetimeScope();
 
             //Registering repositories
             builder.RegisterType<LoggingRepository>().As<ILoggingRepository>()
