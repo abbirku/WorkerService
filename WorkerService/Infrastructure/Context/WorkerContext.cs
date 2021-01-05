@@ -21,7 +21,6 @@ namespace Infrastructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            _connectionString = !string.IsNullOrEmpty(_connectionString) ? _connectionString : "Data Source=DODPC\\DOD20;Initial Catalog=LoggingDb;Integrated Security=True;";
             if (!dbContextOptionsBuilder.IsConfigured)
             {
                 dbContextOptionsBuilder.UseSqlServer(

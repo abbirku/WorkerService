@@ -1,10 +1,6 @@
 ﻿using Core;
 using Infrastructure.Context;
-using Infrastructure.Entities;
 using Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.UnitOfWorks
 {

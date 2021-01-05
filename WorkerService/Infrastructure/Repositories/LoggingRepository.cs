@@ -1,9 +1,6 @@
 ﻿using Core;
 using Infrastructure.Context;
 using Infrastructure.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.Repositories
 {
