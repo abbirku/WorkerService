@@ -14,7 +14,7 @@ namespace WorkerService
 {
     public class Program
     {
-        private static string _connectionString = ConnectionInfo.ConnectionString;
+        private static string _connectionString = ConnectionInfo.GetCurrentValue<string>("ConnectionStrings:DefaultConnection");
         private static string _migrationAssemblyName;
         private static IConfiguration _configuration;
 
